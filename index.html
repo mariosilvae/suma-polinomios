@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Suma de Polinomios — Prototipo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="page">
+        <header class="header card">
+            <div>
+                <h1>Suma de Polinomios</h1>
+                <p class="lead">Ingresa dos polinomios y obtén la suma paso a paso. Puedes agregar términos manualmente
+                    o pegar la notación (ej. <code>3x^2 + 2x - 5</code>).</p>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="card column">
+                <h2>Polinomio A</h2>
+                <div id="termsA" class="terms"></div>
+                <div class="row">
+                    <button id="addTermA" class="btn ghost">+ Agregar término</button>
+                    <button id="pasteA" class="btn ghost">Pegar notación</button>
+                </div>
+                <label class="small">O escribe el polinomio:</label>
+                <input id="textA" class="input" type="text" placeholder="ej. 3x^2 + 4x - 1" aria-label="Polinomio A" />
+            </section>
+
+            <section class="card column center">
+                <div class="controls">
+                    <button id="sumBtn" class="btn primary">Sumar</button>
+                    <button id="clearBtn" class="btn ghost">Limpiar</button>
+                    <button id="saveBtn" class="btn ghost">Guardar</button>
+                </div>
+                <div class="help small">
+                    <strong>Ayuda rápida:</strong>
+                    <ul>
+                        <li>Coeficientes y exponentes deben ser números enteros o decimales.</li>
+                        <li>Si usas la entrada libre, respeta la notación: <code>3x^2 - x + 5</code>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <aside class="card column">
+                <h2>Resultado</h2>
+                <div id="result" class="result" role="status" aria-live="polite">--</div>
+
+                <details id="stepsBox" class="card small">
+                    <summary>Ver pasos</summary>
+                    <div id="steps" class="steps">--</div>
+                </details>
+
+                <h3>Historial</h3>
+                <div id="history" class="history small">Sin ejercicios guardados</div>
+            </aside>
+        </main>
+
+        <footer class="footer small card">
+            Mario Alexis Silva Escalera - Prototipo educativo - INGE-00031-1451. &nbsp;|&nbsp; Hecho con HTML/CSS/JS.
+        </footer>
+    </div>
+
+    <script src="js/parser.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/formatter.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+
+</html>

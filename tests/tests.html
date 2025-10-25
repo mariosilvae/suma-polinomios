@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tests - Polynomials</title>
+</head>
+
+<body>
+    <h2>Pruebas rápidas (abrir consola para más detalles)</h2>
+    <pre id="out"></pre>
+    <script src="../js/parser.js"></script>
+    <script src="../js/engine.js"></script>
+    <script src="../js/formatter.js"></script>
+    <script>
+        const out = document.getElementById('out')
+        function assert(cond, msg) { out.textContent += (cond ? 'OK: ' : 'FAIL: ') + msg + '\\n'; console.assert(cond, msg) }
+
+        try {
+            const p1 = PolyParser.parsePolynomial('3x^2 + 2x -5')
+            assert(JSON.stringify(p1) === JSON.stringify([{ coef: 3, exp: 2 }, { coef: 2, exp: 1 }, { coef: -5, exp: 0 }]), 'parse 3x^2 + 2x -5')
+
+            const sum1 = PolyEngine.addPolynomials([{ coef: 3, exp: 2 }], [{ coef: 2, exp: 2 }])
+            assert(JSON.stringify(sum1) === JSON.stringify([{ exp: 2, coef: 5 }]), 'sum 3x^2 + 2x^2 => 5x^2')
+
+            const f = PolyFormatter.formatPolynomial([{ exp: 2, coef: 3 }, { exp: 1, coef: 2 }, { exp: 0, coef: -5 }])
+            assert(f === '3x^2 +2x -5', 'format polynomial')
+
+            // cancelación
+            const cancel = PolyEngine.addPolynomials([{ coef: 1, exp: 1 }], [{ coef: -1, exp: 1 }])
+            assert(cancel.length === 0 || PolyFormatter.formatPolynomial(cancel) === '0', 'cancelación término 1x -1x')
+
+            out.textContent += '\\nPruebas ejecutadas. Revisa la consola para asserts.'
+        } catch (e) {
+            out.textContent += 'ERROR: ' + e.message
+        }
+    </script>
+</body>
+
+</html>
